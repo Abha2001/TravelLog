@@ -1,5 +1,6 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import ReactMapGL from 'react-map-gl';
+import placesList from './api/placesAPI';
 
 function App() {
   const [viewport, setViewport] = useState({
@@ -10,9 +11,17 @@ function App() {
     zoom: 4,
   });
 
+  useEffect(()=>{
+    (async()=>{
+      const places=await placesList();
+      console.log(places);
+    })();
+  },[]);
+
   return (
     <ReactMapGL
-      mapStyle={'mapbox://styles/abhajha/ckazrvvd202js1io946sfgcjl'}
+      // add you map style or remove it to use the default
+      mapStyle={}
       // enter your mapboxAPIAccessToken
       mapboxApiAccessToken={}
       {...viewport}
