@@ -21,6 +21,20 @@ travelRouter.route('/').get(async (req, res, next) => {
     }
     next(error);
   }
+}).put(async (req, res, next)=>{
+  try {
+    const updatedPlace= await Places.findOneAndUpdate({name : req.body.name},req.body);
+    res.json(updatedPlace)
+  } catch (error) {
+    next(error);
+  }
+}).delete(async (req,res,next)=>{
+  try {
+    const deletedPlace= await Places.findOneAndDelete({name:req.body.name});
+    res.json(deletedPlace);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = travelRouter;
