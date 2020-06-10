@@ -23,7 +23,7 @@ travelRouter.route('/').get(async (req, res, next) => {
   }
 }).put(async (req, res, next)=>{
   try {
-    const updatedPlace= await Places.findOneAndUpdate({name : req.body.name},req.body);
+    const updatedPlace= await Places.findByIdAndUpdate(req.body._id,req.body);
     res.json(updatedPlace)
   } catch (error) {
     next(error);
