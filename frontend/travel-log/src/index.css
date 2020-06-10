@@ -17,12 +17,15 @@ body {
 }
 
 .place-image{
-  height: 300px;
-  width: auto;
+  max-height: 500px;
+  max-width: 500px;
   padding-bottom: 5px;
 }
 
 .title{
+  padding: 10px;
+  margin: 10px;
+  font-size: xx-large;
   justify-content: center;
 }
 
