@@ -33,6 +33,9 @@ travelRouter.route('/').get(async (req, res, next) => {
     const deletedPlace= await Places.findOneAndDelete({name:req.body.name});
     res.json(deletedPlace);
   } catch (error) {
+    if (error.name === 'ValidationError') {
+      res.status(422);
+    }
     next(error);
   }
 });

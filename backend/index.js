@@ -10,7 +10,13 @@ require('dotenv').config();
 
 const port = process.env.PORT || 8000;
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+.then((db)=>{
+  console.log("connected to db ")
+})
+.catch((err)=>{
+  console.log(err);
+})
 
 const app = express();
 
@@ -22,19 +28,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', () => {
-  console.log('connected to db!');
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Travel Log',
+  });
 });
-
-// app.get('/', (req, res) => {
-//   res.json({
-//     message: 'Hello world',
-//   });
-// });
 
 app.use('/logs', travelRouter);
 
