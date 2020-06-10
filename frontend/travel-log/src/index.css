@@ -9,3 +9,56 @@ body {
   height: '100vh';
   overflow: hidden;
 }
+
+.display-form{
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+
+.place-image{
+  height: 300px;
+  width: auto;
+  padding-bottom: 5px;
+}
+
+.title{
+  justify-content: center;
+}
+
+.star{
+  margin-top: 4px;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 0;
+}
+.rating{
+  margin: 0;
+  padding: 0;
+  font-size: large;
+  font-weight: 600;
+}
+
+div .details{
+  padding: 0;
+  margin: 0;
+  justify-content: left;
+  text-align: left;
+}
+
+.details h4{
+  padding:2px;
+  margin: 2px;
+  font-weight: 600;
+  color: darkblue;
+}
+.details small{
+  padding:2px;
+  margin: 2px;
+}
+.details h5{
+  padding:2px;
+  margin: 2px;
+  color: gray;
+  font-style: italic;
+}
