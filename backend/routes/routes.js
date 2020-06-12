@@ -12,6 +12,7 @@ travelRouter.route('/').get(async (req, res, next) => {
   }
 }).post(async (req, res, next) => {
   const place = new Places(req.body);
+  console.log("post req:",req.body);
   try {
     const savedPlace = await place.save();
     res.json(savedPlace);
