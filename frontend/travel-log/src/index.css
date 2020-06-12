@@ -17,8 +17,8 @@ body {
 }
 
 .place-image{
-  max-height: 500px;
-  max-width: 500px;
+  max-height: 400px;
+  max-width: 400px;
   padding-bottom: 5px;
 }
 
@@ -27,16 +27,17 @@ body {
   margin: 10px;
   font-size: xx-large;
   justify-content: center;
+  color: blueviolet;
 }
 
 .star{
   margin-top: 4px;
   height: 20px;
   width: 20px;
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 .rating{
-  margin: 0;
+  margin-bottom: 10px;
   padding: 0;
   font-size: large;
   font-weight: 600;
@@ -51,7 +52,8 @@ div .details{
 
 .details h4{
   padding:2px;
-  margin: 2px;
+  margin-top: 5px;
+  margin-bottom: 2px;
   font-weight: 600;
   color: darkblue;
 }
@@ -64,4 +66,54 @@ div .details{
   margin: 2px;
   color: gray;
   font-style: italic;
+}
+
+form{
+  margin: 10px;
+  border:blueviolet 5px double;
+  padding: 30px;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+label{
+  padding: 10px;
+  color:blueviolet;
+  font-weight: 500;
+  border-bottom-color: blueviolet;
+  border-bottom: 2px solid;
+  margin: 10px;
+  margin-left: 0;
+}
+
+input[type=submit]{
+  justify-content: center;
+  text-align: center;
+  margin: 30px;
+  width: 300px;
+  background-color: blueviolet;
+  padding: 10px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  height: 50px;
+  font-size: 20px;
+}
+
+input{
+  border:none;
+  border-color: lightgray;
+  border-radius: 10px;
+  padding: 15px;
+  background-color:beige;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.comment{
+  margin-top: 10px;
+  color: blueviolet;
+  font-weight: 500;
+  padding: 0;
+  margin-bottom: 5px;
 }
