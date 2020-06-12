@@ -1,9 +1,11 @@
 import React,{useState, useEffect} from 'react';
 import ReactMapGL,{Marker, Popup} from 'react-map-gl';
-import placesList from './api/placesAPI';
+import {placesList} from './api/placesAPI';
 import DisplayForm from './forms/displayForm';
-
+import NewPostForm from './forms/newPostForm';
 function App() {
+
+  const [addNewLocation, setAddNewLocation]=useState(null)
   const [Places, setPlaces]=useState([]);
   const [showPopup, setShowPopup]= useState({});
   const [viewport, setViewport] = useState({
@@ -14,28 +16,40 @@ function App() {
     zoom: 4,
   });
 
+  const handleDoubleClick=(e)=>{
+      setAddNewLocation({
+        longitude:e.lngLat[0],
+        latitude:e.lngLat[1]
+      })
+  }
+
+  const getPlaces=async()=>{
+    const places=await placesList();
+    setPlaces(places);
+  }
+
   useEffect(()=>{
-    (async()=>{
-      const places=await placesList();
-      setPlaces(places);
-    })();
+    getPlaces();
   },[]);
 
   return (
     <ReactMapGL 
-      onClick={()=>{setShowPopup(false)}}
+    onDblClick={handleDoubleClick}
       // add you map style-url or remove it to use the default
-      mapStyle={}
+      mapStyle={"mapbox://styles/abhajha/ckazrvvd202js1io946sfgcjl"}
       // enter your mapboxAPIAccessToken
-      mapboxApiAccessToken={}
+      mapboxApiAccessToken={"pk.eyJ1IjoiYWJoYWpoYSIsImEiOiJja2F6cGU4YjIwMGNnMnVudm1pbnV0cjY5In0.ePA6gjeugX4bFrknSy7Nvg"}
       {...viewport}
       onViewportChange={nextViewport => setViewport(nextViewport)}
     >
       {Places.map((place)=>{
         return(
-          <div onClick={()=>setShowPopup(
+          <div 
+          onMouseEnter={()=>setShowPopup(
             {...showPopup,
-            [place._id]:true})}>
+            [place._id]:true})}
+          onMouseLeave={()=>{setShowPopup(false)}}
+            >
             <Marker latitude={place.latitude} 
             key={place._id}
             longitude={place.longitude} 
@@ -68,6 +82,40 @@ function App() {
         </div>
         )
       })}
+      {addNewLocation?
+      <div>
+        <Marker latitude={addNewLocation.latitude} 
+        longitude={addNewLocation.longitude} 
+        offsetLeft={-20} 
+        offsetTop={-10}>
+        <svg 
+          viewBox="0 0 24 24" 
+          width="28" 
+          height="28" 
+          stroke="purple" 
+          stroke-width="2" 
+          fill="purple" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          className="marker">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </Marker>
+      <Popup
+            latitude={addNewLocation.latitude}
+            longitude={addNewLocation.longitude}
+            closeButton={true}
+            closeOnClick={false}
+            onClose={() => setAddNewLocation(null)}
+            anchor="bottom" >
+            <NewPostForm onClose={()=>{
+              setAddNewLocation(null); 
+              getPlaces();
+              }} longitude={addNewLocation.longitude} latitude={addNewLocation.latitude}/>
+          </Popup>
+      </div>:null
+      }
     </ReactMapGL>
   );
 }
