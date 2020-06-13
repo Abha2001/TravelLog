@@ -36,9 +36,9 @@ function App() {
     <ReactMapGL 
     onDblClick={handleDoubleClick}
       // add you map style-url or remove it to use the default
-      mapStyle={"mapbox://styles/abhajha/ckazrvvd202js1io946sfgcjl"}
+      mapStyle={}
       // enter your mapboxAPIAccessToken
-      mapboxApiAccessToken={"pk.eyJ1IjoiYWJoYWpoYSIsImEiOiJja2F6cGU4YjIwMGNnMnVudm1pbnV0cjY5In0.ePA6gjeugX4bFrknSy7Nvg"}
+      mapboxApiAccessToken={}
       {...viewport}
       onViewportChange={nextViewport => setViewport(nextViewport)}
     >
